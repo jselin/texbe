@@ -3,14 +3,16 @@
         <th>Name</th>
         <th>Manufacturer</th>
         <th>Material</th>
-        <th>Thickness</th>
+        <th>Number</th>
+        <th>Sett</th>
     </tr>
     {% for yarn in yarns %}
     <tr>
-        <td><a href="{% url 'planner:yarn_detail' yarn.id %}"> {{ yarn.name_text}}</a></td>
-        <td><a href="{% url 'planner:manufacturer_detail' yarn.manufacturer.id%}">{{ yarn.manufacturer.name_text}}</a></td>
-        <td> {{yarn.material}}</td>
-        <td> {{yarn.thickness}}</td>
+        <td><a href="{% url 'planner:yarn_detail' yarn.id %}"> {{ yarn.name}}</a></td>
+        <td>{{ yarn.manufacturer}}</td>
+        <td>{{yarn.material}}</td>
+        <td>{{yarn.number}} {{yarn.numbering_system}}</td>
+        <td>{{yarn.sett}} {{yarn.sett_unit_name}}</td>
     </tr>
     {% endfor %}
 </table>

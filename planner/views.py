@@ -26,15 +26,12 @@ def IndexView(request):
 
 class YarnCreate(CreateView):
     model = Yarn
-    fields = ['manufacturer', 'name_text', 'material','thickness']
+    fields = ['manufacturer', 'name', 'material', 'number', 'numbering_system', 'sett', 'sett_unit']
 
 class YarnUpdate(UpdateView):
     model = Yarn
-    fields = ['manufacturer', 'name_text', 'material','thickness']
+    fields = ['manufacturer', 'name', 'material', 'number', 'numbering_system', 'sett', 'sett_unit']
 
 class YarnDelete(DeleteView):
     model = Yarn
     success_url = reverse_lazy('planner:yarns')
-
-class ManufacturerDetailView(generic.DetailView):
-    model = YarnManufacturer

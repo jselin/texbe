@@ -1,5 +1,8 @@
-<h1>{{ yarn.name_text }}</h1>
-<p>Manufacturer: {{yarn.manufacturer.name_text}}</p>
+<h1>{{ yarn.name }}</h1>
+<p>Manufacturer: {{yarn.manufacturer.name}}</p>
 <p>Material: {{yarn.material}}</p>
-<p>Thickness: {{yarn.thickness}}</p>
-<a href='/planner/yarns/{{yarn.id}}/delete'>Delete</a>
+<p>Number: {{yarn.number}} {{yarn.numbering_system.name}}</p>
+<p>Sett: {{yarn.sett}} {{yarn.sett_unit.name}}</p>
+<form action="{% url 'planner:yarn_delete' yarn.id%}">
+    <input type="submit" value="Delete">
+</form>

@@ -11,5 +11,4 @@ urlpatterns = [
     path('yarns/add', views.YarnCreate.as_view(), name='yarn_add'),
     path('yarns/<int:pk>/edit', views.YarnUpdate.as_view(), name='yarn_edit'),
     path('yarns/<int:pk>/delete', views.YarnDelete.as_view(), name='yarn_delete'),
-    path('manufacturer/<int:pk>', views.ManufacturerDetailView.as_view(), name='manufacturer_detail')
 ]
