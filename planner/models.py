@@ -26,7 +26,7 @@ class Yarn(models.Model):
     material = models.CharField(max_length=200)
     number = models.CharField(max_length=20)
     numbering_system = models.ForeignKey(YarnNumberingSystem, on_delete=models.PROTECT)
-    sett = models.FloatField()
+    sett = models.IntegerField()
     sett_unit = models.CharField(max_length=2, choices=SETT_UNIT)
 
     def get_absolute_url(self):

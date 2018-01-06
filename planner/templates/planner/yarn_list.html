@@ -11,7 +11,7 @@
         <td><a href="{% url 'planner:yarn_detail' yarn.id %}"> {{ yarn.name}}</a></td>
         <td>{{ yarn.manufacturer}}</td>
         <td>{{yarn.material}}</td>
-        <td>{{yarn.number}} {{yarn.numbering_system}}</td>
+        <td>{{yarn.numbering_system}} {{yarn.number}}</td>
         <td>{{yarn.sett}} {{yarn.sett_unit_name}}</td>
     </tr>
     {% endfor %}

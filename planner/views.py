@@ -27,6 +27,7 @@ def IndexView(request):
 class YarnCreate(CreateView):
     model = Yarn
     fields = ['manufacturer', 'name', 'material', 'number', 'numbering_system', 'sett', 'sett_unit']
+    success_url = '/planner/yarns'
 
 class YarnUpdate(UpdateView):
     model = Yarn
