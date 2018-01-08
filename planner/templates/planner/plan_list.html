@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 <h1>
     The Awsome Planner tool
 </h1>
@@ -9,4 +13,5 @@
 <form action="{% url 'planner:plan_create' %}">
     <input type="submit" value="Create plan">
 </form>
-    
+
+{% endblock %}
