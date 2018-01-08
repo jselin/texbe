@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <table>
     <tr>
         <th>Name</th>
@@ -19,3 +22,4 @@
 <form action="{% url 'planner:yarn_create' %}">
     <input type="submit" value="Add yarn">
 </form>
+{% endblock %}

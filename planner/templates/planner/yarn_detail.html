@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>{{ yarn.name }}</h1>
 <p>Manufacturer: {{yarn.manufacturer.name}}</p>
 <p>Material: {{yarn.material}}</p>
@@ -9,3 +12,4 @@
 <form action="{% url 'planner:yarn_edit' yarn.id%}">
     <input type="submit" value="Edit">
 </form>
+{% endblock %}
