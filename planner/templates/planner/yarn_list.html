@@ -12,10 +12,10 @@
         <td>{{ yarn.manufacturer}}</td>
         <td>{{yarn.material}}</td>
         <td>{{yarn.numbering_system}} {{yarn.number}}</td>
-        <td>{{yarn.sett}} {{yarn.sett_unit_name}}</td>
+        <td>{{yarn.sett}} yarns/cm</td>
     </tr>
     {% endfor %}
 </table>
-<form action="{% url 'planner:yarn_add' %}">
+<form action="{% url 'planner:yarn_create' %}">
     <input type="submit" value="Add yarn">
 </form>
