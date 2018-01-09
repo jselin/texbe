@@ -1,2 +1,7 @@
 **/__pycache__
 __pycache__
+docker-login
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
