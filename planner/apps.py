@@ -10,6 +10,6 @@ def get_env_variable(var_name):
 
 class PlannerConfig(AppConfig):
     name = 'planner'
-    if(!get_env_variable):
+    if (not get_env_variable('DJANGO_DEVELOPMENT')):
         path = '/opt/python/current/app/planner'
 
