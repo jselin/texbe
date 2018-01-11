@@ -1,0 +1,22 @@
+version: '3'  
+services:  
+  db:
+    image: postgres:latest
+    ports: 
+      - "5432:5432"
+  web:
+    build: .
+    command: python3 manage.py migrate
+    command: run.sh
+    depends_on:
+      - db
+    ports: 
+      - "80:8000"
+    environment:
+      - DB_NAME=postgres
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=
+      - DB_HOSTNAME=db
+      - DB_PORT=5432
+      - SECRET_KEY=df8856afe0832f4fb42095daa92ca9a0ddbed40f
+      - DJANGO_DEVELOPMENT=true
