@@ -36,7 +36,7 @@ SECRET_KEY = get_env_variable('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.texdesigners.com']
+ALLOWED_HOSTS = ['.texdesigners.com', '.elasticbeanstalk.com']
 
 
 # Application definition
