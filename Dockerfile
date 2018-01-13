@@ -1,6 +1,6 @@
 FROM python:3.6.2-alpine
 
-RUN apk add --no-cache gcc libc-dev libffi-dev openssl-dev make postgresql-dev
+RUN apk add --no-cache gcc libc-dev libffi-dev openssl-dev make postgresql-dev openrc nginx
 
 
 RUN mkdir /workdir
