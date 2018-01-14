@@ -6,11 +6,9 @@ from django.utils import timezone
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-
 from .models import Yarn
 from .models import YarnManufacturer
 from .models import Plan    
-
 
 class YarnListView(generic.ListView):
     model = Yarn
@@ -48,4 +46,19 @@ class PlanDetailView(generic.DetailView):
 class PlanCreate(CreateView):
     model = Plan
     fields = ['name', 'finished_lenght', 'warp_shrinkage', 'warp_take_up', 'finished_width', 'weft_shrinkage', 'weft_draw_in', 'picks_per_cm', 'ends_per_cm', 'test_lenght', 'tying_lenght', 'loom_waste_lenght', 'fringe_lenght', 'selvedge_width', 'warp_yarn', 'weft_yarn']
-    success_url = reverse_lazy('planner:plan_list')
+    success_url = reverse_lazy('planner:plans')
+
+class PlanUpdate(UpdateView):
+    model = Plan
+    fields = ['name', 'finished_lenght', 'warp_shrinkage', 'warp_take_up', 'finished_width', 'weft_shrinkage', 'weft_draw_in', 'picks_per_cm', 'ends_per_cm', 'test_lenght', 'tying_lenght', 'loom_waste_lenght', 'fringe_lenght', 'selvedge_width', 'warp_yarn', 'weft_yarn']
+    success_url = reverse_lazy('planner:plans')
+
+
+class PlanDelete(DeleteView):
+    model = Plan
+    success_url = reverse_lazy('planner:plans')
+
+class YarnManufacturerCreate(CreateView):
+    model = YarnManufacturer
+    fields = ['name']
+    success_url = reverse_lazy('planner:yarn_create')

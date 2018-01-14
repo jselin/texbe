@@ -9,8 +9,9 @@ echo Collect static files
 python manage.py collectstatic --clear --noinput 
 python manage.py collectstatic --noinput  
 
+echo Sleeping 5
+sleep 5
 echo Starting migrations
-#./wait-for.sh $DB_HOSTNAME:$DB_PORT --timeout=10 -- python3 manage.py migrate
 python3 manage.py migrate
 
 echo Starting nginx

@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>
-    The Awsome Planner tool
-</h1>
-<ul>
+<a href="{% url 'planner:plan_create' %}" class="btn btn-success btn-sm" role="button">New plan</a>
+<p></p>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Dimensions</th>
+    </tr>
     {% for plan in plans %}
-    <li><a href="{% url 'planner:plan_detail' plan.id%}"> {{plan.name}}</a></li>
+    <tr>
+        <td><a href="{% url 'planner:plan_detail' plan.id%}"> {{plan.name}}</a></td>
+        <td>{{plan.finished_lenght}}m x {{plan.finished_width}}m</td>
+    </tr>
     {% endfor %}
-</ul>
-<form action="{% url 'planner:plan_create' %}">
-    <input type="submit" value="Create plan">
-</form>
+</table>
 {% endblock %}

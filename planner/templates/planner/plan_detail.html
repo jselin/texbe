@@ -1,7 +1,57 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
+<table class="table-condensed">
+    <tr>
+        <th>Finished lenght</th>
+        <td>{{plan.finished_lenght}} Shrinkage {{plan.warp_shrinkage}}% Take up {{plan.warp_take_up}}m</td>
+    </tr>
+    <tr>
+        <th>Finished width</th>
+        <td>{{plan.finished_width}} Srinkage {{plan.weft_shrinkage}}% Take up {{plan.weft_take_up}}</td>
+    </tr>
+    <tr>
+        <th>Pics and ends density</th>
+        <td>Picks {{plan.picks}}/cm Ends {{plan.ends}}/cm</td>
+    </tr>
+    <tr>
+        <th>Test lenght</th>
+        <td>{{plan.test_lenght}}m</td>
+    </tr>
+    <tr>
+        <th>Tying lenght</th>
+        <td>{{plan.tying_lenght}}m</td>
+    </tr>
+    <tr>
+        <th>Looms waste</th>
+        <td>{{plan.loom_waste_lenght}}m</td>
+    </tr>
+    <tr>
+        <th>Fringe lenght</th>
+        <td>{{plan.fringe_lenght}}m</td>
+    </tr>
+    <tr>
+        <th>Fringe lenght</th>
+        <td>{{plan.fringe_lenght}}m</td>
+    </tr>
+    <tr>
+        <th>Selvedge</th>
+        <td>{{plan.selvedge_width}}m</td>
+    </tr>
+    <tr>
+        <th>Warp</th>
+        <td>{{plan.warp_yarn}}m</td>
+    </tr>
+    <tr>
+        <th>Weft</th>
+        <td>{{plan.weft_yarn}}m</td>
+    </tr>
+</table>
+<p></p>
+<div class="btn-group btn-group-sm">
+    <a href="{% url 'planner:plan_delete' plan.id%}" class="btn btn-danger" role="button">Delete</a>
+    <a href="{% url 'planner:plan_update' plan.id%}" class="btn btn-primary" role="button">Edit</a>
+</div>
 
-{{plan}}
+
 
 {% endblock %}

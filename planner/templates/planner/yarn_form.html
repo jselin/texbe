@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>New yarn</h1>
+<a href="{% url 'planner:yarn_manufacturer_create' %}" class="btn btn-success btn-sm" role="button">Add manufacturer</a>
+<p>
+</p>
 <form method="POST" class="post-form">
     {% csrf_token %} 
-    {{ form.as_p }}
-    <button type="submit" class="save btn btn-default">Save</button>
+    <table class="table-condensed">
+            {{ form.as_table }}
+    </table>
+    <button type="submit" class="btn btn-primary btn-sm">Save</button>
 </form>
 {% endblock %}

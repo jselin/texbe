@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<table>
+<a href="{% url 'planner:yarn_create' %}" class="btn btn-success btn-sm" role="button">New yarn</a>
+<p></p>
+<table class="table">
     <tr>
         <th>Name</th>
         <th>Manufacturer</th>
@@ -19,7 +21,4 @@
     </tr>
     {% endfor %}
 </table>
-<form action="{% url 'planner:yarn_create' %}">
-    <input type="submit" value="Add yarn">
-</form>
 {% endblock %}

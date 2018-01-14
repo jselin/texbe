@@ -1,15 +1,28 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<h1>{{ yarn.name }}</h1>
-<p>Manufacturer: {{yarn.manufacturer.name}}</p>
-<p>Material: {{yarn.material}}</p>
-<p>Number: {{yarn.number}} {{yarn.numbering_system.name}}</p>
-<p>Sett: {{yarn.sett}} yarns/cm</p>
-<form action="{% url 'planner:yarn_delete' yarn.id%}">
-    <input type="submit" value="Delete">
-</form>
-<form action="{% url 'planner:yarn_edit' yarn.id%}">
-    <input type="submit" value="Edit">
-</form>
+{% extends 'base.html' %} {% block content %}
+<div class="well well-sm">
+    <h4>{{ yarn.name }}</h4>
+</div>
+<table class="table-condensed">
+    <tr>
+        <th>Manufacturer</th>
+        <td>{{yarn.manufacturer.name}}</td>
+    </tr>
+    <tr>
+        <th>Material</th>
+        <td>{{yarn.material}}</td>
+    </tr>
+    <tr>
+        <th>Number</th>
+        <td>{{yarn.number}} {{yarn.numbering_system.name}}</td>
+    </tr>
+    <tr>
+        <th>Sett</th>
+        <td>{{yarn.sett}} yarns/cm</td>
+    </tr>
+</table>
+<p></p>
+<div class="btn-group btn-group-sm">
+    <a href="{% url 'planner:yarn_delete' yarn.id%}" class="btn btn-danger" role="button">Delete</a>
+    <a href="{% url 'planner:yarn_update' yarn.id%}" class="btn btn-primary" role="button">Edit</a>
+</div>
 {% endblock %}
