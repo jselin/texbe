@@ -13,13 +13,4 @@ WORKDIR /workdir
 
 EXPOSE 8000
 
-ENV RDS_DB_NAME='texdesigners'
-ENV RDS_USERNAME='jkselin'
-ENV RDS_PASSWORD=''
-ENV RDS_HOSTNAME='localhost'
-ENV RDS_PORT=''
-ENV SECRET_KEY='df8856afe0832f4fb42095daa92ca9a0ddbed40f'
-ENV DJANGO_DEVELOPMENT=true
-
-#COPY ./run.sh /
 ENTRYPOINT ["./run.sh"]

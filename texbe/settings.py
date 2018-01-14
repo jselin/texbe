@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = get_env_variable('SECRET_KEY')
 DEBUG = False
-ALLOWED_HOSTS = ['.texdesigners.com']
+ALLOWED_HOSTS = ['.texdesigners.com','localhost']
 
 # Application definition
 INSTALLED_APPS = [

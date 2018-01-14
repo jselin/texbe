@@ -1,12 +1,12 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <p></p>
 <form method="POST" class="post-form">
-        {% csrf_token %} 
-        <table class="table-condensed">
-                {{ form.as_table }}
-        </table>
+    {% csrf_token %}
+    <table class="table-condensed">
+        {{ form.as_table }}
+    </table>
+    <div class="btn-group btn-group-sm">
         <button type="submit" class="btn btn-primary btn-sm">Save</button>
-    </form>
-    {% endblock %}
+    </div>
+</form>
+{% endblock %}
