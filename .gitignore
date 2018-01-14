@@ -1,6 +1,6 @@
 **/__pycache__
 __pycache__
-docker-login
+docker-login.sh
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
