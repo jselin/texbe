@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['.texdesigners.com']
 
 # Application definition
 INSTALLED_APPS = [
+    'social_django',
     'jquery',
     'bootstrap3',
     'planner.apps.PlannerConfig',
@@ -85,6 +86,23 @@ DATABASES = {
         'PORT': get_env_variable('DB_PORT'),
     }
 }
+
+# Auth0
+SOCIAL_AUTH_TRAILING_SLASH = False                    # Remove end slash from routes
+SOCIAL_AUTH_AUTH0_DOMAIN = 'texdesigners.eu.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = '0CRd7xYvd78E1fnRdS4gQOUMeA2GMrCj'
+SOCIAL_AUTH_AUTH0_SECRET = get_env_variable('AUTH0_SECRET')
+SOCIAL_AUTH_AUTH0_SCOPE = [
+    'openid',
+    'profile'
+]
+AUTHENTICATION_BACKENDS = {
+    'planner.auth0backend.Auth0',
+    'django.contrib.auth.backends.ModelBackend'
+}
+LOGIN_URL = "/login/auth0"
+LOGIN_REDIRECT_URL = "/dashboard"
+LOGOUT_REDIRECT_URL = "/"
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

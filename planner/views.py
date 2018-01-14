@@ -3,12 +3,33 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Yarn
 from .models import YarnManufacturer
 from .models import Plan    
+
+
+def index(request):
+    return render(request, 'index.html')
+
+@login_required
+def dashboard(request):
+    user = request.user
+    auth0user = user.social_auth.get(provider="auth0")
+    userdata = {
+        'user_id': auth0user.uid,
+        'name': user.first_name,
+        'picture': auth0user.extra_data['picture']
+    }
+    
+    return render(request, 'dashboard.html', {
+        'auth0User': auth0user,
+        'userdata': json.dumps(userdata, indent=4)
+    })
 
 class YarnListView(generic.ListView):
     model = Yarn

@@ -1,12 +1,14 @@
 from django.urls import path
 from django.views.generic.base import RedirectView
+from django.conf.urls import url, include
 
 from . import views
 
 app_name = 'planner'
 
 urlpatterns = [
-    path('', RedirectView.as_view(pattern_name='planner:plans', permanent=False)),
+    path('', views.index, name='index'),
+    path('dashboard', views.dashboard, name='dashboard'),
     path('plans', views.PlanListView.as_view(), name='plans'),
     path('plans/create', views.PlanCreate.as_view(), name='plan_create'),
     path('plans/<int:pk>', views.PlanDetailView.as_view(), name='plan_detail'),
@@ -18,4 +20,6 @@ urlpatterns = [
     path('yarns/<int:pk>/update', views.YarnUpdate.as_view(), name='yarn_update'),
     path('yarns/<int:pk>/delete', views.YarnDelete.as_view(), name='yarn_delete'),
     path('yarnmanfacturers/create', views.YarnManufacturerCreate.as_view(), name='yarn_manufacturer_create'),
+    url(r'^', include('django.contrib.auth.urls')),
+    url(r'^', include('social_django.urls')),
 ]   
