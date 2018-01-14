@@ -1,5 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 
+<div class="well well-sm">
+    <h4>{{ plan.name }}</h4>
+</div>
+
 <table class="table-condensed">
     <tr>
         <th>Finished lenght</th>
@@ -51,7 +55,5 @@
     <a href="{% url 'planner:plan_delete' plan.id%}" class="btn btn-danger" role="button">Delete</a>
     <a href="{% url 'planner:plan_update' plan.id%}" class="btn btn-primary" role="button">Edit</a>
 </div>
-
-
 
 {% endblock %}
