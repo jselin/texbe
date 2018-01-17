@@ -4,7 +4,7 @@ from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-
+import json
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -26,7 +26,7 @@ def dashboard(request):
         'picture': auth0user.extra_data['picture']
     }
     
-    return render(request, 'dashboard.html', {
+    return render(request, 'planner/dashboard.html', {
         'auth0User': auth0user,
         'userdata': json.dumps(userdata, indent=4)
     })
