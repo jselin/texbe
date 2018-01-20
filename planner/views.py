@@ -5,6 +5,7 @@ from django.views import generic
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 import json
+from django.template import Context
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -12,11 +13,12 @@ from .models import Yarn
 from .models import YarnManufacturer
 from .models import Plan    
 
+from django import forms
+from .forms import PlanForm
 
 def index(request):
     return render(request, 'index.html')
 
-@login_required
 def dashboard(request):
     user = request.user
     auth0user = user.social_auth.get(provider="auth0")
@@ -83,3 +85,27 @@ class YarnManufacturerCreate(CreateView):
     model = YarnManufacturer
     fields = ['name']
     success_url = reverse_lazy('planner:yarn_create')
+
+def plan(request, pk):
+    instance = Plan.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = PlanForm(request.POST, instance=instance)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            plan_calculate(instance)
+
+            if request.POST.get('save'):
+                instance.save()
+                return HttpResponseRedirect(reverse_lazy('planner:plans'))
+            else:  # calculate only
+                form = PlanForm(instance=instance)
+                return render(request, 'planner/plan.html', {'form': form})
+    else: 
+        form = PlanForm(instance=instance)
+
+    return render(request, 'planner/plan.html', {'form': form})
+
+def plan_calculate(instance):
+    instance.warp_lenght = instance.finished_lenght + instance.test_lenght
+    

@@ -59,8 +59,15 @@ class Plan(models.Model):
     warp_yarn = models.ForeignKey(Yarn, on_delete=models.PROTECT, related_name='warp_yarn')
     weft_yarn = models.ForeignKey(Yarn, on_delete=models.PROTECT, related_name='weft_yarn')
 
+    #calculated fields
+    warp_lenght = models.FloatField(null=True, blank=True)
+
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return reverse('planner:plan_detail', kwargs={'pk': self.pk})
+
+    @property
+    def lenght(self):
+        return finished_lenght + test_lenght
