@@ -6,8 +6,12 @@ class PlanForm(ModelForm):
         super(PlanForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         if instance and instance.pk:
-            self.fields['warp_lenght'].widget.attrs['readonly'] = True
-        #self.initial['warp_lenght'] = instance.finished_lenght + instance.test_lenght
+            self.fields['warp_lenght_m'].widget.attrs['readonly'] = True
+            self.fields['number_of_ends'].widget.attrs['readonly'] = True
+            self.fields['warp_width_cm'].widget.attrs['readonly'] = True
+            self.fields['number_of_pics'].widget.attrs['readonly'] = True
+            self.fields['warp_demand_g'].widget.attrs['readonly'] = True
+            self.fields['weft_demand_g'].widget.attrs['readonly'] = True
     class Meta:
         model = Plan
         fields = '__all__'

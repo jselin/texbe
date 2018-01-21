@@ -66,17 +66,6 @@ class YarnDelete(DeleteView):
 class PlanDetailView(generic.DetailView):
     model = Plan
 
-class PlanCreate(CreateView):
-    model = Plan
-    fields = ['name', 'finished_lenght', 'warp_shrinkage', 'warp_take_up', 'finished_width', 'weft_shrinkage', 'weft_draw_in', 'picks_per_cm', 'ends_per_cm', 'test_lenght', 'tying_lenght', 'loom_waste_lenght', 'fringe_lenght', 'selvedge_width', 'warp_yarn', 'weft_yarn']
-    success_url = reverse_lazy('planner:plans')
-
-class PlanUpdate(UpdateView):
-    model = Plan
-    fields = ['name', 'finished_lenght', 'warp_shrinkage', 'warp_take_up', 'finished_width', 'weft_shrinkage', 'weft_draw_in', 'picks_per_cm', 'ends_per_cm', 'test_lenght', 'tying_lenght', 'loom_waste_lenght', 'fringe_lenght', 'selvedge_width', 'warp_yarn', 'weft_yarn']
-    success_url = reverse_lazy('planner:plans')
-
-
 class PlanDelete(DeleteView):
     model = Plan
     success_url = reverse_lazy('planner:plans')
