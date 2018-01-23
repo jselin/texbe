@@ -15,6 +15,7 @@ from .models import Plan
 
 from django import forms
 from .forms import PlanForm
+from .calculate import plan_calculate
 
 def index(request):
     return render(request, 'index.html')
@@ -95,6 +96,4 @@ def plan(request, pk):
 
     return render(request, 'planner/plan.html', {'form': form})
 
-def plan_calculate(instance):
-    instance.warp_lenght = instance.finished_lenght + instance.test_lenght
-    
+

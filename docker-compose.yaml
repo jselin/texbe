@@ -21,3 +21,5 @@ services:
       - DB_PORT=5432
       - SECRET_KEY=df8856afe0832f4fb42095daa92ca9a0ddbed40f
       - DJANGO_DEVELOPMENT=true
+      - AUTH0_SECRET
+
