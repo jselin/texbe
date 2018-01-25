@@ -10,16 +10,15 @@ class YarnManufacturer(models.Model):
     def __str__(self):
         return self.name
 
-
-class YarnNumberingSystem(models.Model):
-    name = models.CharField(max_length=3, unique=True)
-    help = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.name
-
-
 class Yarn(models.Model):
+    YARN_NUMBERING_SYSTEM = (
+        ('TEX', 'TEX'),
+        ('NEP', 'NEP'),
+        ('NE', 'NE'),
+        ('NM', 'NM'),
+        ('DEN', 'DEN'),
+    )
+
     #number_regexp = '(\d+([,.]?\d*)?){1}[ ]*([xX*/]{1}[ ]*\d*)?'
     number_regexp = '(\d+[,.]?\d*){1}[ ]*(?:([xX*/]{1})[ ]*(\d+))?'
     name = models.CharField(max_length=200)
@@ -28,10 +27,9 @@ class Yarn(models.Model):
     material = models.CharField(max_length=200)
     number = models.CharField(max_length=20,
                               validators=[
-                                  RegexValidator(number_regexp,
-                                                 message='Examples: "1.2" "5.3x2" "4,6/2"')])
-    numbering_system = models.ForeignKey(
-        YarnNumberingSystem, on_delete=models.PROTECT)
+                                RegexValidator(number_regexp,
+                                message='Examples: "1.2" "5.3x2" "4,6/2"')])
+    numbering_system = models.CharField(max_length=3, choices=YARN_NUMBERING_SYSTEM)
     sett = models.IntegerField()
 
     def get_absolute_url(self):
@@ -42,7 +40,6 @@ class Yarn(models.Model):
 
     @property
     def tex_number(self):
-        # FIXME works only with tex numbers for now
         p = re.compile(self.number_regexp)
         sub = p.findall(self.number)
         v = Decimal(sub[0][0])
@@ -50,7 +47,11 @@ class Yarn(models.Model):
             n = Decimal(1)
         else:
             n = Decimal(sub[0][2])
-        return v * n
+        if(self.numbering_system is 'TEX'):
+            return v * n
+        else:
+            return 0
+
 
 class Plan(models.Model):
     name = models.CharField(max_length=200,

@@ -1,12 +1,11 @@
 from django.test import TestCase
+from planner.models import Yarn
 
 # Create your tests here.
-class FooBarTestCase(TestCase):
-    def setUp(sefl):
-        self.x = 0
-    def test_foo(self):
-        """Test foo"""
-        self.assertEqual(self.x, 0)
-    def test_bar(self):
-        """Test bar"""
-        self.assertEqual(self.x, 1)
+class YarnTestCase(TestCase):
+    def setUp(self):
+        pass
+    def test_TEX(self):
+        """Test TEX"""
+        yarn = Yarn(numbering_system='TEX', number='2/2')
+        self.assertEqual(yarn.tex_number, 4)

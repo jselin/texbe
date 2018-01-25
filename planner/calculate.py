@@ -21,19 +21,19 @@ def plan_calculate(i):
     # Takes in Model instance and modifies it deirectly FIXME possibly evil
 
     length_shrinkage_m = (i.finished_lenght_m + i.headings_hems_lenght_m) * Decimal(i.lenght_shrinkage_p / 100)
-    print("length_shrinkage_m: %f", length_shrinkage_m)
+    #print("length_shrinkage_m: %f", length_shrinkage_m)
     width_shrinkage_cm = i.finished_width_cm * Decimal(i.width_shrinkage_p / 100)
-    print("width_shrinkage_cm: %f", width_shrinkage_cm)
+    #print("width_shrinkage_cm: %f", width_shrinkage_cm)
     length_take_up_m = ((i.finished_lenght_m + i.headings_hems_lenght_m + length_shrinkage_m + \
         i.fringe_lenght_m) * i.number_of_desigs + (i.test_piece_lenght_m * i.number_of_test_pieces) + \
         i.loom_waste_lenght_m + i.cutting_margin_m) * Decimal(i.lenght_take_up_p / 100)
-    print("length_take_up_m: %f", length_take_up_m)
+    #print("length_take_up_m: %f", length_take_up_m)
     width_draw_in_cm = (i.finished_width_cm + width_shrinkage_cm) * Decimal(i.width_draw_in_p / 100)
-    print("width_draw_in_cm: %f", width_draw_in_cm)
+    #print("width_draw_in_cm: %f", width_draw_in_cm)
     fabric_lenght_m = (i.finished_lenght_m + i.headings_hems_lenght_m + length_shrinkage_m) * \
         i.number_of_desigs + i.test_piece_lenght_m * \
         i.number_of_test_pieces + length_take_up_m
-    print("fabric_lenght_m: %f", fabric_lenght_m)
+    #print("fabric_lenght_m: %f", fabric_lenght_m)
     i.warp_lenght_m = two_decimals((i.finished_lenght_m + i.headings_hems_lenght_m + length_shrinkage_m + i.fringe_lenght_m) * \
         i.number_of_desigs + (i.test_piece_lenght_m * i.number_of_test_pieces) + \
         i.loom_waste_lenght_m + i.cutting_margin_m + length_take_up_m)
