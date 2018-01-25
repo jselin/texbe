@@ -44,7 +44,7 @@ def plan_calculate(i):
     i.number_of_pics = no_decimal(i.warp_lenght_m * (i.picks_per_cm * 100))
     
     i.warp_demand_g = no_decimal(i.ends_per_cm * i.warp_width_cm * i.warp_lenght_m * i.warp_yarn.tex_number / 1000)
-    print("i.warp_yarn.tex_number: %f", i.warp_yarn.tex_number)
+    #print("i.warp_yarn.tex_number: %f", i.warp_yarn.tex_number)
     i.weft_demand_g = no_decimal(i.picks_per_cm * i.warp_width_cm * fabric_lenght_m * i.weft_yarn.tex_number /1000)
 
 def no_decimal(d):

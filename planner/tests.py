@@ -10,6 +10,16 @@ class YarnTestCase(TestCase):
         """Test TEX"""
         yarn = Yarn(numbering_system='TEX', number='2/2')
         self.assertEqual(yarn.tex_number, 4)
+        yarn = Yarn(numbering_system='TEX', number='2')
+        self.assertEqual(yarn.tex_number, 2)
+        yarn = Yarn(numbering_system='TEX', number='2x2')
+        self.assertEqual(yarn.tex_number, 4)
+        yarn = Yarn(numbering_system='TEX', number='2 / 2')
+        self.assertEqual(yarn.tex_number, 4)
+        yarn = Yarn(numbering_system='TEX', number='2*2')
+        self.assertEqual(yarn.tex_number, 4)
+        yarn = Yarn(numbering_system='TEX', number='2 2')
+        self.assertNotEqual(yarn.tex_number, 4)
 
 class PlanTestCase(TestCase):
     def setUp(self):

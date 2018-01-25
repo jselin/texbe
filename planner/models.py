@@ -20,14 +20,14 @@ class Yarn(models.Model):
     )
 
     #number_regexp = '(\d+([,.]?\d*)?){1}[ ]*([xX*/]{1}[ ]*\d*)?'
-    number_regexp = '(\d+[,.]?\d*){1}[ ]*(?:([xX*/]{1})[ ]*(\d+))?'
+    NUMBER_VALIDATOR = '(\d+[,.]?\d*){1}[ ]*(?:([xX*/]{1})[ ]*(\d+))?'
     name = models.CharField(max_length=200)
     manufacturer = models.ForeignKey(
         YarnManufacturer, on_delete=models.PROTECT)
     material = models.CharField(max_length=200)
     number = models.CharField(max_length=20,
                               validators=[
-                                RegexValidator(number_regexp,
+                                RegexValidator(NUMBER_VALIDATOR,
                                 message='Examples: "1.2" "5.3x2" "4,6/2"')])
     numbering_system = models.CharField(max_length=3, choices=YARN_NUMBERING_SYSTEM)
     sett = models.IntegerField()
@@ -40,7 +40,7 @@ class Yarn(models.Model):
 
     @property
     def tex_number(self):
-        p = re.compile(self.number_regexp)
+        p = re.compile(self.NUMBER_VALIDATOR)
         sub = p.findall(self.number)
         v = Decimal(sub[0][0])
         if sub[0][2] is None or len(sub[0][2]) is 0:
@@ -49,8 +49,16 @@ class Yarn(models.Model):
             n = Decimal(sub[0][2])
         if(self.numbering_system == 'TEX'):
             return v * n
+        elif(self.numbering_system == 'NEP'):
+            pass
+        elif(self.numbering_system == 'NE'):
+            pass
+        elif(self.numbering_system == 'NM'):
+            pass
+        elif(self.numbering_system == 'DEN'):
+            pass
         else:
-            print("Something when heywire")
+            print("Something went haywire")
             return 0
 
 
