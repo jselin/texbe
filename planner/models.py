@@ -12,11 +12,11 @@ class YarnManufacturer(models.Model):
 
 class Yarn(models.Model):
     YARN_NUMBERING_SYSTEM = (
-        ('TEX', 'TEX'),
-        ('NEP', 'NEP'),
-        ('NE', 'NE'),
-        ('NM', 'NM'),
-        ('DEN', 'DEN'),
+        ('TEX', 'tex (Basic Tex Unit)'),
+        ('NEP', 'Nep (???)'),
+        ('NE', 'Ne (English cotton yarn number)'),
+        ('NM', 'Nm (Metric yarn number)'),
+        ('DEN', 'den (Denier)'),
     )
 
     #number_regexp = '(\d+([,.]?\d*)?){1}[ ]*([xX*/]{1}[ ]*\d*)?'
@@ -40,6 +40,7 @@ class Yarn(models.Model):
 
     @property
     def tex_number(self):
+        """http://www.swicofil.com/companyinfo/manualyarnnumbering.html"""
         p = re.compile(self.NUMBER_VALIDATOR)
         sub = p.findall(self.number)
         v = Decimal(sub[0][0])
@@ -50,13 +51,13 @@ class Yarn(models.Model):
         if(self.numbering_system == 'TEX'):
             return v * n
         elif(self.numbering_system == 'NEP'):
-            pass
+            return Decimal(720) / (v * n)
         elif(self.numbering_system == 'NE'):
-            pass
+            return Decimal(590.5) / (v * n)
         elif(self.numbering_system == 'NM'):
-            pass
+            return Decimal(1000) / (v * n)
         elif(self.numbering_system == 'DEN'):
-            pass
+            return (v * n) / Decimal(9)
         else:
             print("Something went haywire")
             return 0

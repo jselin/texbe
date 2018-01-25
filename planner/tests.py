@@ -20,6 +20,24 @@ class YarnTestCase(TestCase):
         self.assertEqual(yarn.tex_number, 4)
         yarn = Yarn(numbering_system='TEX', number='2 2')
         self.assertNotEqual(yarn.tex_number, 4)
+    def test_NE(self):
+        """Test NE"""
+        yarn = Yarn(numbering_system='NE', number='4')
+        self.assertEqual(yarn.tex_number, 590.5/4)
+    def test_NEP(self):
+        """Test NEP"""
+        yarn = Yarn(numbering_system='NEP', number='4')
+        self.assertEqual(yarn.tex_number, 720/4)
+    def test_NM(self):
+        """Test NM"""
+        yarn = Yarn(numbering_system='NM', number='4')
+        self.assertEqual(yarn.tex_number, 1000/4)
+    def test_DEN(self):
+        """Test DEN"""
+        yarn = Yarn(numbering_system='DEN', number='40')
+        self.assertAlmostEqual(float(yarn.tex_number), 40/9)
+
+
 
 class PlanTestCase(TestCase):
     def setUp(self):
