@@ -47,9 +47,10 @@ class Yarn(models.Model):
             n = Decimal(1)
         else:
             n = Decimal(sub[0][2])
-        if(self.numbering_system is 'TEX'):
+        if(self.numbering_system == 'TEX'):
             return v * n
         else:
+            print("Something when heywire")
             return 0
 
 
