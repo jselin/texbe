@@ -19,10 +19,12 @@ from django.conf.urls import url, include
 
 from django.views.generic.base import RedirectView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('planner/', include('planner.urls')),
     path('', RedirectView.as_view(pattern_name='planner:plans', permanent=False)),
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^', include('social_django.urls')),
+
 ]

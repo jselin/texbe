@@ -3,6 +3,7 @@ from django.views.generic.base import RedirectView
 from django.conf.urls import url, include
 from django.contrib.auth.decorators import login_required
 
+
 from . import views
 
 app_name = 'planner'
@@ -23,5 +24,5 @@ urlpatterns = [
     path('yarns/<int:pk>/update', views.YarnUpdate.as_view(), name='yarn_update'),
     path('yarns/<int:pk>/delete', views.YarnDelete.as_view(), name='yarn_delete'),
     path('yarnmanfacturers/create', views.YarnManufacturerCreate.as_view(), name='yarn_manufacturer_create'),
-    path('plan/', views.plan, name='plan',)
+    path('plan/', views.plan, name='plan',),
  ]   
