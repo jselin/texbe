@@ -7,7 +7,6 @@ echo DB_HOSTNAME $DB_HOSTNAME
 
 echo Collect static files
 python manage.py collectstatic --clear --noinput 
-python manage.py collectstatic --noinput  
 
 echo Sleeping 5
 sleep 5
