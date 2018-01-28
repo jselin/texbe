@@ -16,11 +16,20 @@ Including another URLconf
 from django.urls import include, path
 from django.contrib import admin
 from django.conf.urls import url, include
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.generic.base import RedirectView
 
 from django.views.generic.base import RedirectView
 
 
 urlpatterns = [
+    url(
+        r'^favicon.ico$',
+        RedirectView.as_view(
+            url=staticfiles_storage.url('favicon.ico'),
+            permanent=False),
+        name="favicon"
+    ),
     path('admin/', admin.site.urls),
     path('planner/', include('planner.urls')),
     path('', RedirectView.as_view(pattern_name='planner:plans', permanent=False)),

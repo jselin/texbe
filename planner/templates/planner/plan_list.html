@@ -11,7 +11,7 @@
     {% for plan in plans %}
     <tr>
         <td><a href="{% url 'planner:plan_detail' plan.id%}"> {{plan.name}}</a></td>
-        <td>{{plan.finished_lenght}}m x {{plan.finished_width}}m</td>
+        <td>{{plan.finished_lenght_m}}m x {{plan.finished_width_cm}}cm</td>
     </tr>
     {% endfor %}
 </table>
