@@ -25,17 +25,17 @@ def plan_calculate(i):
     width_shrinkage_cm = i.finished_width_cm * Decimal(i.width_shrinkage_p / 100)
     #print("width_shrinkage_cm: %f", width_shrinkage_cm)
     length_take_up_m = ((i.finished_lenght_m + i.headings_hems_lenght_m + length_shrinkage_m + \
-        i.fringe_lenght_m) * i.number_of_desigs + (i.test_piece_lenght_m * i.number_of_test_pieces) + \
+        i.fringe_lenght_m) * i.number_of_designs + (i.test_piece_lenght_m * i.number_of_test_pieces) + \
         i.loom_waste_lenght_m + i.cutting_margin_m) * Decimal(i.lenght_take_up_p / 100)
     #print("length_take_up_m: %f", length_take_up_m)
     width_draw_in_cm = (i.finished_width_cm + width_shrinkage_cm) * Decimal(i.width_draw_in_p / 100)
     #print("width_draw_in_cm: %f", width_draw_in_cm)
     fabric_lenght_m = (i.finished_lenght_m + i.headings_hems_lenght_m + length_shrinkage_m) * \
-        i.number_of_desigs + i.test_piece_lenght_m * \
+        i.number_of_designs + i.test_piece_lenght_m * \
         i.number_of_test_pieces + length_take_up_m
     #print("fabric_lenght_m: %f", fabric_lenght_m)
     i.warp_lenght_m = two_decimals((i.finished_lenght_m + i.headings_hems_lenght_m + length_shrinkage_m + i.fringe_lenght_m) * \
-        i.number_of_desigs + (i.test_piece_lenght_m * i.number_of_test_pieces) + \
+        i.number_of_designs + (i.test_piece_lenght_m * i.number_of_test_pieces) + \
         i.loom_waste_lenght_m + i.cutting_margin_m + length_take_up_m)
 
 
@@ -59,7 +59,7 @@ def two_decimals(d):
 """"
         finished_lenght_m, headings_hems_lenght_m=0, lenght_shrinkage_p,
         fringe_lenght_m=0, finished_width_cm, width_shrinkage_p,
-        number_of_desigs=1, test_piece_lenght_m=0, number_of_test_pieces=1,
+        number_of_designs=1, test_piece_lenght_m=0, number_of_test_pieces=1,
         loom_waste_lenght_m, cutting_margin_m, lenght_take_up_p,
         width_draw_in_p, selvedge_warps, warp_tex, weft_tex,
         picks_per_cm, ends_per_cm):

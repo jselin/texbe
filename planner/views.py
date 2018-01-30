@@ -18,7 +18,7 @@ from .forms import PlanForm
 from .calculate import plan_calculate
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'planner/index.html')
 
 def dashboard(request):
     user = request.user
@@ -75,6 +75,25 @@ class YarnManufacturerCreate(CreateView):
     model = YarnManufacturer
     fields = ['name']
     success_url = reverse_lazy('planner:yarn_create')
+
+def plan_create(request):
+    if request.method == 'POST':
+        form = PlanForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            plan_calculate(instance)
+            instance.created_by = request.user
+
+            if request.POST.get('save'):
+                instance.save()
+                return HttpResponseRedirect(reverse_lazy('planner:plans'))
+            else:  # calculate only
+                form = PlanForm(instance=instance)
+                return render(request, 'planner/plan.html', {'form': form})
+    else: 
+        form = PlanForm()
+
+    return render(request, 'planner/plan.html', {'form': form})
 
 def plan(request, pk):
     instance = Plan.objects.get(pk=pk)

@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.core.validators import RegexValidator
 import re
 from decimal import *
+from django.contrib.auth.models import User
+
 
 class YarnManufacturer(models.Model):
     name = models.CharField(max_length=200, unique=True)
@@ -71,8 +73,10 @@ class Yarn(models.Model):
 
 
 class Plan(models.Model):
+    created_by = models.ForeignKey(User, editable=False, null=True, on_delete=models.SET_NULL)
+
     name = models.CharField(max_length=200,
-                            error_messages={'required': 'We really need you to fill in the name. Sory for bothering you'})
+                            error_messages={'required': 'We really need you to fill in the name'})
 
     # Design
     finished_lenght_m = models.DecimalField(max_digits=5, decimal_places=2,

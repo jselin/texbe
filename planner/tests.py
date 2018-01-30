@@ -55,7 +55,7 @@ class PlanTestCase(TestCase):
         p.fringe_lenght_m = 0
         p.finished_width_cm = 100
         p.width_shrinkage_p = 0
-        p.number_of_desigs = 1
+        p.number_of_designs = 1
 
         # Weawing
         p.test_piece_lenght_m = 0
