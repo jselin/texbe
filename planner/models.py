@@ -78,6 +78,8 @@ class Plan(models.Model):
     name = models.CharField(max_length=200,
                             error_messages={'required': 'We really need you to fill in the name'})
 
+    public = models.BooleanField(default=True, verbose_name="Public")
+
     # Design
     finished_lenght_m = models.DecimalField(max_digits=5, decimal_places=2,
                                         verbose_name="Finished lenght",

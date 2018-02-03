@@ -17,8 +17,18 @@ from django import forms
 from .forms import PlanForm
 from .calculate import plan_calculate
 
+
 def index(request):
     return render(request, 'planner/index.html')
+
+"""
+def Landing(generic.ListView):
+    model = Plan
+    context_object_name = 'plans'
+
+    def get_queryset(self):
+        return Plan.objects.all().filter(public=True)
+"""
 
 def dashboard(request):
     user = request.user
@@ -49,7 +59,14 @@ class PlanListView(generic.ListView):
     context_object_name = 'plans'
 
     def get_queryset(self):
-        return Plan.objects.order_by('name')
+        return Plan.objects.all().filter(public=True)
+    
+    def get_context_data(self, **kwargs):
+        context = super(PlanListView, self).get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            context['user'] = Plan.objects.all().filter(created_by=self.request.user)
+        return context
+        
 
 class YarnCreate(CreateView):
     model = Yarn

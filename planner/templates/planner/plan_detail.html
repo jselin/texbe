@@ -1,5 +1,4 @@
-{% extends 'base.html' %} {% block content %}
-{% load verbose_names %}
+{% extends 'base.html' %} {% block content %} {% load verbose_names %}
 
 <div class="well well-sm">
     <h4>{{ plan.name }}</h4>
@@ -9,29 +8,30 @@
     <tr>
         <th>Lenght</th>
         <td>
-            {% get_verbose_field_name plan "finished_lenght_m" %} {{plan.finished_lenght_m}}m<br>
-            {% get_verbose_field_name plan "headings_hems_lenght_m" %} {{plan.headings_hems_lenght_m}}m <br>
-            {% get_verbose_field_name plan "fringe_lenght_m" %} {{plan.fringe_lenght_m}}m <br>
-            {% get_verbose_field_name plan "loom_waste_lenght_m" %} {{plan.loom_waste_lenght_m}}m <br>
-            {% get_verbose_field_name plan "lenght_shrinkage_p" %} {{plan.lenght_shrinkage_p}}% <br>
-            {% get_verbose_field_name plan "lenght_take_up_p" %} {{plan.lenght_take_up_p}}% <br>
-            </td>
-        </tr>
+            {% get_verbose_field_name plan "finished_lenght_m" %} {{plan.finished_lenght_m}}m
+            <br> {% get_verbose_field_name plan "headings_hems_lenght_m" %} {{plan.headings_hems_lenght_m}}m
+            <br> {% get_verbose_field_name plan "fringe_lenght_m" %} {{plan.fringe_lenght_m}}m
+            <br> {% get_verbose_field_name plan "loom_waste_lenght_m" %} {{plan.loom_waste_lenght_m}}m
+            <br> {% get_verbose_field_name plan "lenght_shrinkage_p" %} {{plan.lenght_shrinkage_p}}%
+            <br> {% get_verbose_field_name plan "lenght_take_up_p" %} {{plan.lenght_take_up_p}}%
+            <br>
+        </td>
+    </tr>
     <tr>
         <th>Width</th>
         <td>
-            {% get_verbose_field_name plan "finished_width_cm" %} {{plan.finished_width_cm}}cm <br>
-            {% get_verbose_field_name plan "cutting_margin_m" %} {{plan.cutting_margin_m}}m <br>
-            {% get_verbose_field_name plan "width_shrinkage_p" %} {{plan.width_shrinkage_p}}% <br>
-            {% get_verbose_field_name plan "width_draw_in_p" %} {{plan.width_draw_in_p}}% <br>
-            {% get_verbose_field_name plan "selvedge_warps" %} {{plan.selvedge_warps}} <br>
+            {% get_verbose_field_name plan "finished_width_cm" %} {{plan.finished_width_cm}}cm
+            <br> {% get_verbose_field_name plan "cutting_margin_m" %} {{plan.cutting_margin_m}}m
+            <br> {% get_verbose_field_name plan "width_shrinkage_p" %} {{plan.width_shrinkage_p}}%
+            <br> {% get_verbose_field_name plan "width_draw_in_p" %} {{plan.width_draw_in_p}}%
+            <br> {% get_verbose_field_name plan "selvedge_warps" %} {{plan.selvedge_warps}}
+            <br>
         </td>
     </tr>
     <tr>
         <th>Testing</th>
         <td>
-            {% get_verbose_field_name plan "test_piece_lenght_m" %} {{plan.test_piece_lenght_m}}m 
-            {% get_verbose_field_name plan "number_of_test_pieces" %} {{plan.number_of_test_pieces}} 
+            {% get_verbose_field_name plan "test_piece_lenght_m" %} {{plan.test_piece_lenght_m}}m {% get_verbose_field_name plan "number_of_test_pieces"%} {{plan.number_of_test_pieces}}
         </td>
     </tr>
     <tr>
@@ -40,8 +40,10 @@
     </tr>
     <tr>
         <th>Yarns</th>
-        <td>Warp {{plan.warp_yarn}}</td>
-        <td>Weft {{plan.weft_yarn}}</td>
+        <td>
+            Warp: {{plan.warp_yarn}}<br>
+            Weft: {{plan.weft_yarn}}
+        </td>
     </tr>
     <tr>
         <th>Pics and ends density</th>
@@ -50,24 +52,28 @@
     <tr>
         <th>Calculated</th>
         <td>
-            {% get_verbose_field_name plan "warp_lenght_m" %} {{plan.warp_lenght_m}}m <br>
-            {% get_verbose_field_name plan "number_of_ends" %} {{plan.number_of_ends}} <br>
-            {% get_verbose_field_name plan "warp_width_cm" %} {{plan.warp_width_cm}}cm <br>
-            {% get_verbose_field_name plan "number_of_pics" %} {{plan.number_of_pics}} <br>
+            {% get_verbose_field_name plan "warp_lenght_m" %} {{plan.warp_lenght_m}}m
+            <br> {% get_verbose_field_name plan "number_of_ends" %} {{plan.number_of_ends}}
+            <br> {% get_verbose_field_name plan "warp_width_cm" %} {{plan.warp_width_cm}}cm
+            <br> {% get_verbose_field_name plan "number_of_pics" %} {{plan.number_of_pics}}
+            <br>
         </td>
     </tr>
     <tr>
-            <th>Yarn demand</th>
-            <td>
-                {% get_verbose_field_name plan "warp_demand_g" %} {{plan.warp_demand_g}}g <br>
-                {% get_verbose_field_name plan "weft_demand_g" %} {{plan.weft_demand_g}}g <br>
-            </td>
-        </tr>
-    </table>
+        <th>Yarn demand</th>
+        <td>
+            {% get_verbose_field_name plan "warp_demand_g" %} {{plan.warp_demand_g}}g
+            <br> {% get_verbose_field_name plan "weft_demand_g" %} {{plan.weft_demand_g}}g
+            <br>
+        </td>
+    </tr>
+</table>
 <p></p>
+{% if plan.created_by == user %}
 <div class="btn-group btn-group-sm">
     <a href="{% url 'planner:plan_delete' plan.id%}" class="btn btn-danger" role="button">Delete</a>
     <a href="{% url 'planner:plan_update' plan.id%}" class="btn btn-primary" role="button">Edit</a>
 </div>
+{% endif %}
 
 {% endblock %}

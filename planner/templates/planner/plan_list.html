@@ -2,7 +2,22 @@
 
 {% block content %}
 <a href="{% url 'planner:plan_create' %}" class="btn btn-success btn-sm" role="button">New plan</a>
-<p></p>
+<h3>My plans</h3>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Dimensions</th>
+        <th>Public</th>
+    </tr>
+    {% for plan in user %}
+    <tr>
+        <td><a href="{% url 'planner:plan_detail' plan.id%}"> {{plan.name}}</a></td>
+        <td>{{plan.finished_lenght_m}}m x {{plan.finished_width_cm}}cm</td>
+        <td>{{plan.public}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<h3>Community plans</h3>
 <table class="table">
     <tr>
         <th>Name</th>

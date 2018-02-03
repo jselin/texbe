@@ -1,17 +1,14 @@
-{# Load the tag library #}
-{% load staticfiles %}
+{# Load the tag library #} 
+{% load staticfiles %} 
 
 {% block extrahead %}
-    <script src="{% static "/js/jquery.js" %}"></script>
-{% endblock %}
+<script src="{% static "/js/jquery.js" %}"></script> 
+{% endblock %} 
 
-
-
-{% load bootstrap3 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
+{% load bootstrap3 %} 
+{# Load CSS and JavaScript #} 
+{% bootstrap_css %} 
+{% bootstrap_javascript %} 
 
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
@@ -22,26 +19,42 @@
 <head>
     <title>Textdesigners</title>
     <!---link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/static.texdesigners.com/bootstrap.min.css"-->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static "apple-touch-icon.png" %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static "favicon-32x32.png" %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static "favicon-16x16.png" %}">
-    <link rel="manifest" href="{% static "manifest.json" %}">
-    <link rel="mask-icon" href="{% static "safari-pinned-tab.svg" color="#5bbad5" %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static " apple-touch-icon.png " %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static " favicon-32x32.png " %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static " favicon-16x16.png " %}">
+    <link rel="manifest" href="{% static " manifest.json " %}">
+    <link rel="mask-icon" href="{% static " safari-pinned-tab.svg " color="#5bbad5 " %}">
     <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" type="text/css" href="{% static 'planner/styles.css' %}" />
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'planner:plans' %}">Texdesigner</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'planner:plans' %}">Plans</a></li>
-            <li><a href="{% url 'planner:yarns' %}">Yarns</a></li>
-          </ul>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'planner:plans' %}">
+                    <img alt="Brand" src="{% static '/texdesigners.svg'%}" style="width:25px;height:25px;">
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="{% url 'planner:plans' %}">Plans</a>
+                </li>
+                <li>
+                    <a href="{% url 'planner:yarns' %}">Yarns</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    {% if not user.is_anonymous %}
+                    <a href="/logout">Logout {{user.username}}</a>
+                    {% else %}
+                    <a href="/login/auth0">Login</a>
+                    {% endif %}
+                </li>
+            </ul>
         </div>
-      </nav>
+    </nav>
     <div class="content container">
         {% block content %} {% endblock %}
     </div>
