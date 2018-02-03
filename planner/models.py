@@ -88,7 +88,7 @@ class Plan(models.Model):
                                         verbose_name="Headings and hems",
                                         help_text="some help text")
     lenght_shrinkage_p = models.IntegerField(default=8,
-                                        verbose_name="Lenght srinkage")
+                                        verbose_name="Lenght shrinkage")
     fringe_lenght_m = models.DecimalField(max_digits=4, decimal_places=2, default=0,
                                         verbose_name="Fringe lenght")
 
@@ -106,7 +106,8 @@ class Plan(models.Model):
     number_of_test_pieces = models.IntegerField(default=1,
                                         verbose_name="Number of test pieces")
     loom_waste_lenght_m = models.DecimalField(max_digits=4, decimal_places=2, default=0.6,
-                                        verbose_name="Loom waste")
+                                        verbose_name="Loom waste",
+                                        help_text="Lenght needed for tying the warp on the loom, and, lenght needed at the end. Add about 70 cm for table loom, or 90 cm for a floor loom. Minimum warp length reserved for tying the warp is 0,15 m and at the end 0,35 m when amount of shafts is 2-4. For every additional shaft 0,05 m must be added.")
     cutting_margin_m = models.DecimalField(max_digits=4, decimal_places=2, default=0.6,
                                         verbose_name="Cutting margin")
     lenght_take_up_p = models.IntegerField(default=6,
