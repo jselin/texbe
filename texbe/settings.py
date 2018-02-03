@@ -34,8 +34,8 @@ ALLOWED_HOSTS = ['.texdesigners.com','localhost']
 # Application definition
 INSTALLED_APPS = [
     'social_django',
-    'jquery',
-    'bootstrap3',
+    #'jquery',
+    #'bootstrap3',
     'planner.apps.PlannerConfig',
     'django.contrib.admin',
     'django.contrib.auth',

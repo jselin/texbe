@@ -110,8 +110,8 @@ class Plan(models.Model):
                                         verbose_name="Sample lenght (m)",
                                         help_text="Lenght reserved for weaving a sample")
     number_of_test_pieces = models.IntegerField(default=1,
-                                        verbose_name="Number of samples"),
-                                        help_text="Number of samples to be woven"
+                                        verbose_name="Number of samples",
+                                        help_text="Number of samples to be woven")
     loom_waste_lenght_m = models.DecimalField(max_digits=4, decimal_places=2, default=0.6,
                                         verbose_name="Loom waste (m)",
                                         help_text="Lenght needed for tying the warp on the loom, and, lenght needed at the end. Add about 70 cm for table loom, or 90 cm for a floor loom. Minimum warp length reserved for tying the warp is 0,15 m and at the end 0,35 m when amount of shafts is 2-4. For every additional shaft 0,05 m must be added.")

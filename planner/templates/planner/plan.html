@@ -1,4 +1,11 @@
 {% extends 'base.html' %} {% block content %}
+
+<script type="text/javascript"> 
+    $(document).ready(function() {
+        $('.has-popover').popover({'trigger':'hover'});
+    });
+</script>
+
 <p></p>
 <form method="post" class="post-form">
     {% csrf_token %}
