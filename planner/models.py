@@ -82,23 +82,23 @@ class Plan(models.Model):
 
     # Design
     finished_lenght_m = models.DecimalField(max_digits=5, decimal_places=2,
-                                        verbose_name="Finished lenght (m)",
+                                        verbose_name="Finished lenght",
                                         help_text="Lenght of finished fabric for one design")
     headings_hems_lenght_m = models.DecimalField(max_digits=4, decimal_places=2, default=0,
-                                        verbose_name="Headings and hems (m)",
+                                        verbose_name="Headings and hems",
                                         help_text="Lenght of headings and hems for one design")
     lenght_shrinkage_p = models.IntegerField(default=8,
-                                        verbose_name="Lenght shrinkage (%)",
+                                        verbose_name="Lenght shrinkage",
                                         help_text="Expected shrinkage in lenght of the woven fabric for one design")
     fringe_lenght_m = models.DecimalField(max_digits=4, decimal_places=2, default=0,
-                                        verbose_name="Fringe lenght (m)",
+                                        verbose_name="Fringe lenght",
                                         help_text="Lenght of fringes for one design")
 
     finished_width_cm = models.DecimalField(max_digits=5, decimal_places=1,
-                                        verbose_name="Finished width (cm)",
+                                        verbose_name="Finished width",
                                         help_text="Width of finished fabric for one design")
     width_shrinkage_p = models.IntegerField(default=8,
-                                        verbose_name="Width shrinkage (%)",
+                                        verbose_name="Width shrinkage",
                                         help_text="Expected shinkage in width of the woven fabric for one design")
 
     number_of_designs = models.IntegerField(default=1,
@@ -107,22 +107,22 @@ class Plan(models.Model):
 
     # Weawing
     test_piece_lenght_m = models.DecimalField(max_digits=4, decimal_places=2, default=0,
-                                        verbose_name="Sample lenght (m)",
+                                        verbose_name="Sample lenght",
                                         help_text="Lenght reserved for weaving a sample")
     number_of_test_pieces = models.IntegerField(default=1,
                                         verbose_name="Number of samples",
                                         help_text="Number of samples to be woven")
     loom_waste_lenght_m = models.DecimalField(max_digits=4, decimal_places=2, default=0.6,
-                                        verbose_name="Loom waste (m)",
+                                        verbose_name="Loom waste",
                                         help_text="Lenght needed for tying the warp on the loom, and, lenght needed at the end. Add about 70 cm for table loom, or 90 cm for a floor loom. Minimum warp length reserved for tying the warp is 0,15 m and at the end 0,35 m when amount of shafts is 2-4. For every additional shaft 0,05 m must be added.")
     cutting_margin_m = models.DecimalField(max_digits=4, decimal_places=2, default=0.6,
-                                        verbose_name="Cutting margin (m)",
+                                        verbose_name="Cutting margin",
                                         help_text="Lenght between the designs or samples reserved for cutting them separate")
     lenght_take_up_p = models.IntegerField(default=6,
-                                        verbose_name="Lenght take-up (%)",
+                                        verbose_name="Lenght take-up",
                                         help_text="Expected take-up due to interlacement")
     width_draw_in_p = models.IntegerField(default=6,
-                                        verbose_name="Width draw-in (%)",
+                                        verbose_name="Width draw-in",
                                         help_text="Expected width draw-in due to interlacement")
     selvedge_warps = models.IntegerField(default=2,
                                         verbose_name="Selvedge warps",
@@ -131,14 +131,18 @@ class Plan(models.Model):
     # Yarns
     warp_yarn = models.ForeignKey(
         Yarn, on_delete=models.PROTECT, related_name='warp_yarn',
-                                        verbose_name="Warp yarn")
+                                        verbose_name="Warp yarn",
+                                        help_text="Yarn used for warp")
     weft_yarn = models.ForeignKey(
         Yarn, on_delete=models.PROTECT, related_name='weft_yarn',
-                                        verbose_name="Weft yarn")
+                                        verbose_name="Weft yarn",
+                                        help_text="Yarn used for weft")
     picks_per_cm = models.DecimalField(max_digits=4, decimal_places=1,
-                                        verbose_name="Pics per cm")
+                                        verbose_name="Pics per cm",
+                                        help_text="Number of weft yarn layers per cm")
     ends_per_cm = models.DecimalField(max_digits=4, decimal_places=1,
-                                        verbose_name="End per cm")
+                                        verbose_name="Ends per cm",
+                                        help_text="Number of warp yarns per cm")
 
     # On loom calculated
     warp_lenght_m = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True,
