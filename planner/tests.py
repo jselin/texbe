@@ -28,6 +28,8 @@ class YarnTestCase(TestCase):
         """Test NE"""
         yarn = Yarn(numbering_system='NE', number='4')
         self.assertAlmostEqual(float(yarn.tex_number), 590.5412474/4)
+        yarn = Yarn(numbering_system='NE', number='4/2')
+        self.assertAlmostEqual(float(yarn.tex_number), 590.5412474/2)
     def test_NEP(self):
         """Test NEL"""
         yarn = Yarn(numbering_system='NEL', number='4')

@@ -49,24 +49,24 @@ class Yarn(models.Model):
         sub = p.findall(self.number)
         v = Decimal(sub[0][0].replace(',','.'))
         if sub[0][2] is None or len(sub[0][2]) is 0:
-            n = v
+            n = 1
         else:
-            n = v * Decimal(sub[0][2])
+            n = Decimal(sub[0][2])
         
         if(self.numbering_system == 'TEX'):
-            return n
+            return (v * n)
         elif(self.numbering_system == 'DTEX'):
-            return n / Decimal(10)
-        elif(self.numbering_system == 'NEL'):
-            return Decimal(1653.515493) / n
-        elif(self.numbering_system == 'NE'):
-            return Decimal(590.5412474) / n
-        elif(self.numbering_system == 'NEK'):
-            return Decimal(885.8118712) / n
-        elif(self.numbering_system == 'NM'):
-            return Decimal(1000) / n
+            return (v * n) / Decimal(10)
         elif(self.numbering_system == 'DEN'):
-            return  n / Decimal(9)
+            return  (v * n) / Decimal(9)
+        elif(self.numbering_system == 'NEL'):
+            return Decimal(1653.515493) / (v / n)
+        elif(self.numbering_system == 'NE'):
+            return Decimal(590.5412474) / (v / n)
+        elif(self.numbering_system == 'NEK'):
+            return Decimal(885.8118712) / (v / n)
+        elif(self.numbering_system == 'NM'):
+            return Decimal(1000) / (v / n)
         else:
             print("Something went haywire")
             return 0
