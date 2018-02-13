@@ -1,4 +1,11 @@
 {% extends 'base.html' %} {% block content %}
+
+<script type="text/javascript"> 
+    $(document).ready(function() {
+        $('.has-popover').popover({'trigger':'hover'});
+    });
+</script>
+
 <p></p>
 <form method="post" class="post-form">
     {% csrf_token %}
@@ -6,8 +13,9 @@
         {{ form.as_table }}
     </table>
     <div class="btn-group btn-group-sm">
-        <button type="submit" class="btn btn-primary btn-sm" name="calculate" value="calculate">Calculate</button>
+        <button type="submit" class="btn btn-secondary btn-sm" name="calculate" value="calculate">Calculate</button>
         <button type="submit" class="btn btn-primary btn-sm" name="save" value="save">Save</button>
     </div>
 </form>
+<p></p>
 {% endblock %}

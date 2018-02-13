@@ -49,24 +49,24 @@ class Yarn(models.Model):
         sub = p.findall(self.number)
         v = Decimal(sub[0][0].replace(',','.'))
         if sub[0][2] is None or len(sub[0][2]) is 0:
-            n = v
+            n = 1
         else:
-            n = v * Decimal(sub[0][2])
+            n = Decimal(sub[0][2])
         
         if(self.numbering_system == 'TEX'):
-            return n
+            return (v * n)
         elif(self.numbering_system == 'DTEX'):
-            return n / Decimal(10)
-        elif(self.numbering_system == 'NEL'):
-            return Decimal(1653.515493) / n
-        elif(self.numbering_system == 'NE'):
-            return Decimal(590.5412474) / n
-        elif(self.numbering_system == 'NEK'):
-            return Decimal(885.8118712) / n
-        elif(self.numbering_system == 'NM'):
-            return Decimal(1000) / n
+            return (v * n) / Decimal(10)
         elif(self.numbering_system == 'DEN'):
-            return  n / Decimal(9)
+            return  (v * n) / Decimal(9)
+        elif(self.numbering_system == 'NEL'):
+            return Decimal(1653.515493) / (v / n)
+        elif(self.numbering_system == 'NE'):
+            return Decimal(590.5412474) / (v / n)
+        elif(self.numbering_system == 'NEK'):
+            return Decimal(885.8118712) / (v / n)
+        elif(self.numbering_system == 'NM'):
+            return Decimal(1000) / (v / n)
         else:
             print("Something went haywire")
             return 0
@@ -110,8 +110,8 @@ class Plan(models.Model):
                                         verbose_name="Sample lenght",
                                         help_text="Lenght reserved for weaving a sample")
     number_of_test_pieces = models.IntegerField(default=1,
-                                        verbose_name="Number of samples"),
-                                        help_text="Number of samples to be woven"
+                                        verbose_name="Number of samples",
+                                        help_text="Number of samples to be woven")
     loom_waste_lenght_m = models.DecimalField(max_digits=4, decimal_places=2, default=0.6,
                                         verbose_name="Loom waste",
                                         help_text="Lenght needed for tying the warp on the loom, and, lenght needed at the end. Add about 70 cm for table loom, or 90 cm for a floor loom. Minimum warp length reserved for tying the warp is 0,15 m and at the end 0,35 m when amount of shafts is 2-4. For every additional shaft 0,05 m must be added.")
