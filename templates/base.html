@@ -23,25 +23,25 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary py-1">
         <a class="navbar-brand" href="{% url 'planner:plans' %}">
             <img alt="Brand" src="{% static '/texdesigners.svg'%}" style="width:25px;height:25px;">
         </a>
 
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home
-                    <span class="sr-only">(current)</span>
-                </a>
-                <a class="nav-item nav-link" href="{% url 'planner:plans' %}">Plans</a>
-                <a class="nav-item nav-link" href="{% url 'planner:yarns' %}">Yarns</a>
-                {% if not user.is_anonymous %}
-                <a class="nav-item nav-link" href="/logout">Logout {{user.username}}</a>
-                {% else %}
-                <a class="nav-item nav-link" href="/login/auth0">Login</a>
-                {% endif %}
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="{% url 'planner:plans' %}">Plans</a>
+            <a class="nav-item nav-link" href="{% url 'planner:yarns' %}">Yarns</a>
+        </div>
 
-            </div>
+        <div class="navbar-nav ml-auto">
+            {% if not user.is_anonymous %}
+            <a class="nav-item nav-link" href="/logout">Logout {{user.username}}
+                <img src="{{ user.extra_data.picture }}" style="width:15px;height:15px;">
+            </a>
+
+            {% else %}
+            <a class="nav-item nav-link" href="/login/auth0">Login</a>
+            {% endif %}
         </div>
     </nav>
     <div class="content container">
