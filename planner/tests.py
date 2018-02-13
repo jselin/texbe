@@ -30,10 +30,12 @@ class YarnTestCase(TestCase):
         self.assertAlmostEqual(float(yarn.tex_number), 590.5412474/4)
         yarn = Yarn(numbering_system='NE', number='4/2')
         self.assertAlmostEqual(float(yarn.tex_number), 590.5412474/2)
-    def test_NEP(self):
+    def test_NEL(self):
         """Test NEL"""
         yarn = Yarn(numbering_system='NEL', number='4')
         self.assertAlmostEqual(float(yarn.tex_number), 1653.515493/4)
+        yarn = Yarn(numbering_system='NEL', number='30/2')
+        self.assertAlmostEqual(float(yarn.tex_number), 1653.515493/15)
     def test_NM(self):
         """Test NM"""
         yarn = Yarn(numbering_system='NM', number='4')
@@ -85,3 +87,79 @@ class PlanTestCase(TestCase):
         # Demand calculated
         self.assertEqual(p.warp_demand_g, 48)
         self.assertEqual(p.weft_demand_g, 48)
+
+    def test_nel_yarn_demand_1(self):
+        p = Plan()
+        # Design
+        p.finished_lenght_m = 9
+        p.headings_hems_lenght_m = 0
+        p.lenght_shrinkage_p = 0
+        p.fringe_lenght_m = 0
+        p.finished_width_cm = 45
+        p.width_shrinkage_p = 0
+        p.number_of_designs = 1
+
+        # Weawing
+        p.test_piece_lenght_m = 0
+        p.number_of_test_pieces = 0
+        p.loom_waste_lenght_m = 0
+        p.cutting_margin_m = 0
+        p.lenght_take_up_p = 0
+        p.width_draw_in_p = 0
+        p.selvedge_warps = 0
+
+        # Yarns
+        p.warp_yarn = Yarn(numbering_system='NEL', number='30/2')
+        p.weft_yarn = Yarn(numbering_system='NEL', number='30/2')
+        p.picks_per_cm = 14
+        p.ends_per_cm = 14
+
+        plan_calculate(p)
+
+        # On loom calculated
+        self.assertEqual(p.warp_lenght_m, 9)
+        self.assertEqual(p.number_of_ends, 630 )
+        self.assertEqual(p.warp_width_cm, 45)
+        self.assertEqual(p.number_of_pics, 12600)
+
+        # Demand calculated
+        self.assertEqual(p.warp_demand_g, 630)
+        self.assertEqual(p.weft_demand_g, 630)
+
+    def test_tex_yarn_demand_1(self):
+        p = Plan()
+        # Design
+        p.finished_lenght_m = 9
+        p.headings_hems_lenght_m = 0
+        p.lenght_shrinkage_p = 0
+        p.fringe_lenght_m = 0
+        p.finished_width_cm = 45
+        p.width_shrinkage_p = 0
+        p.number_of_designs = 1
+
+        # Weawing
+        p.test_piece_lenght_m = 0
+        p.number_of_test_pieces = 0
+        p.loom_waste_lenght_m = 0
+        p.cutting_margin_m = 0
+        p.lenght_take_up_p = 0
+        p.width_draw_in_p = 0
+        p.selvedge_warps = 0
+
+        # Yarns
+        p.warp_yarn = Yarn(numbering_system='TEX', number='30/2')
+        p.weft_yarn = Yarn(numbering_system='TEX', number='30/2')
+        p.picks_per_cm = 14
+        p.ends_per_cm = 14
+
+        plan_calculate(p)
+
+        # On loom calculated
+        self.assertEqual(p.warp_lenght_m, 9)
+        self.assertEqual(p.number_of_ends, 630 )
+        self.assertEqual(p.warp_width_cm, 45)
+        self.assertEqual(p.number_of_pics, 12600)
+
+        # Demand calculated
+        self.assertEqual(p.warp_demand_g, 169)
+        self.assertEqual(p.weft_demand_g, 169)
