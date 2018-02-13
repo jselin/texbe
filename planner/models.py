@@ -146,13 +146,17 @@ class Plan(models.Model):
 
     # On loom calculated
     warp_lenght_m = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True,
-                                        verbose_name="Warp lenght")
+                                        verbose_name="Warp lenght",
+                                        help_text="Total warp lenght needed")
     number_of_ends = models.IntegerField(null=True, blank=True,
-                                        verbose_name="Number of ends")
+                                        verbose_name="Number of ends",
+                                        help_text="Total number of warp ends")
     warp_width_cm = models.DecimalField(max_digits=5, decimal_places=1, null=True, blank=True,
-                                        verbose_name="Warp width")
+                                        verbose_name="Warp width",
+                                        help_text="Width of the warp on loom")
     number_of_pics = models.IntegerField(null=True, blank=True,
-                                        verbose_name="Number of pics")
+                                        verbose_name="Number of pics",
+                                        help_text="Total number of weft pics")
 
     # Demand calculated
     warp_demand_g = models.IntegerField(null=True, blank=True,
